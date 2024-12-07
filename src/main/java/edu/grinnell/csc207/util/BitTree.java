@@ -82,35 +82,46 @@ public class BitTree {
    * Get the value in a tree.
    *
    * @param bits
-   * @return the value of the bits.
+   * @return the value of the bits or a default message if no value is found.
    */
   public String get(String bits) {
     // exception cases
     if (bits.length() != this.depth) {
-      throw new IllegalArgumentException("The length of the bits must"
-          + "be equal to the depth of the tree.");
+      System.err.println("Trouble translating because no corresponding value exists for the bits.");
+      return "No corresponding value"; // Default message
     } // if condition.
+
     char[] bitsArray = bits.toCharArray();
     for (int i = 0; i < depth; i++) {
       if (bitsArray[i] != '0' && bitsArray[i] != '1') {
-        throw new IllegalArgumentException("The bits must be a binary string.");
+        System.err.println("Trouble translating because no corresponding value exists for the bits.");
+        return "No corresponding value"; // Default message
       } // if condition.
     } // for block.
+
     BinaryTreeNode current = this.root;
 
     for (int i = 0; i < depth; i++) {
       if (bitsArray[i] == '0') {
         if (current.left == null) {
-          return null;
+          System.err.println("Trouble translating because no corresponding value exists for the bits.");
+          return "No corresponding value"; // Default message
         } // if condition.
         current = current.left;
       } else if (bitsArray[i] == '1') {
         if (current.right == null) {
-          return null;
+          System.err.println("Trouble translating because no corresponding value exists for the bits.");
+          return "No corresponding value"; // Default message
         } // if condition
         current = current.right;
       } // else-if condition
     } // for block
+
+    if (current.value == null) {
+      System.err.println("Trouble translating because no corresponding value exists for the bits.");
+      return "No corresponding value"; // Default message
+    }
+
     return current.value;
   } // get().
 

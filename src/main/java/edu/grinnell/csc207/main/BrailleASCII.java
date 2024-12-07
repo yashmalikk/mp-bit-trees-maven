@@ -1,8 +1,11 @@
 package edu.grinnell.csc207.main;
 
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 
 import edu.grinnell.csc207.util.BrailleAsciiTables;
+
 /**
  * @author Yash Malik
  */
@@ -23,7 +26,7 @@ public class BrailleASCII {
     String source = args[1];
 
     // Perform translation based on the target
-    PrintWriter pen = new PrintWriter(System.out, true);
+    PrintWriter pen = new PrintWriter(new OutputStreamWriter(System.out, StandardCharsets.UTF_8), true);
     switch (target.toLowerCase()) {
       case "braille":
         translateToBraille(pen, source);
@@ -72,24 +75,27 @@ public class BrailleASCII {
       pen.print(asciiChar);
     } // for block
     pen.println(); // Print a newline after the ASCII output
-  } // translatetoASCII().
+  } // translatetoASCII().  
 
   private static void translateToUnicode(PrintWriter pen, String input) {
-    if (input.length() % 6 != 0) {
-      System.err.println("Invalid length of bit string");
-      System.exit(1);
-    } // if block.
+    // Convert the ASCII input to braille
+    String brailleInput = "";
+    for (int i = 0; i < input.length(); i++) {
+      brailleInput += BrailleAsciiTables.toBraille(input.charAt(i));
+    } // for loop
 
-    for (int i = 0; i < input.length(); i += 6) {
-      String brailleChar = input.substring(i, i + 6);
+    // Process the braille input in chunks of 6 bits and translate to Unicode
+    for (int i = 0; i < brailleInput.length(); i += 6) {
+      String brailleChar = brailleInput.substring(i, i + 6);
       String unicodeChar = BrailleAsciiTables.toUnicode(brailleChar);
+
       if (unicodeChar.isEmpty()) {
         System.err.println("Trouble translating '" + brailleChar
             + "' because no corresponding value.");
         System.exit(1);
       } // if block
-      pen.print(unicodeChar);
+      pen.print(unicodeChar); // Output the Unicode character (Braille in Unicode)
     } // for loop
     pen.println(); // Print a newline after the Unicode output
   } // translateToUnicode()
-} // BraileASCII
+} // BrailleASCII
