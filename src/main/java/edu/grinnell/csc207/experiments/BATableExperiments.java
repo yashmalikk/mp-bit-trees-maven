@@ -2,15 +2,12 @@ package edu.grinnell.csc207.experiments;
 
 import edu.grinnell.csc207.util.BrailleAsciiTables;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
  * Some experiments with the Braille-Ascii Tables.
  *
- * @author Your Name Here
+ * @author Yash Malik
  * @author Samuel A. Rebelsky
  */
 public class BATableExperiments {
@@ -49,7 +46,7 @@ public class BATableExperiments {
     pen.println("----------------");
     for (String bits : brailleCharacters) {
       try {
-        pen.println(bits + " -> '" + BrailleAsciiTables.toAscii(bits) + "'");
+        pen.println(bits + " -> '" + BrailleAsciiTables.toASCII(bits) + "'");
       } catch (Exception e) {
         pen.println("Could not convert " + bits + " to ASCII because "
             + e.getMessage());
@@ -67,7 +64,7 @@ public class BATableExperiments {
             + e.getMessage());
       } // try/catch
     } // for
-    
+
     pen.close();
   } // main(String[])
 
