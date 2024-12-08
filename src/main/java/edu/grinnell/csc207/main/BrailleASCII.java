@@ -26,7 +26,8 @@ public class BrailleASCII {
     String source = args[1];
 
     // Perform translation based on the target
-    PrintWriter pen = new PrintWriter(new OutputStreamWriter(System.out, StandardCharsets.UTF_8), true);
+    PrintWriter pen = new PrintWriter(new
+        OutputStreamWriter(System.out, StandardCharsets.UTF_8), true);
     switch (target.toLowerCase()) {
       case "braille":
         translateToBraille(pen, source);
@@ -75,7 +76,7 @@ public class BrailleASCII {
       pen.print(asciiChar);
     } // for block
     pen.println(); // Print a newline after the ASCII output
-  } // translatetoASCII().  
+  } // translatetoASCII().
 
   private static void translateToUnicode(PrintWriter pen, String input) {
     // Convert the ASCII input to braille

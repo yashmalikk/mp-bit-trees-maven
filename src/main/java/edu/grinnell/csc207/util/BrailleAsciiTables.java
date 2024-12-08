@@ -213,7 +213,7 @@ public class BrailleAsciiTables {
   static public String toBraille(char letter) {
     if (letter == ' ') {
       return "000000"; // Space character is mapped to braille as "000000"
-    }
+    } // add the space special case because i cant make it work any other way
     String binary = "0" + Integer.toBinaryString((int) letter);
     String braille = a2b.get(binary);
 
@@ -257,20 +257,20 @@ public class BrailleAsciiTables {
   static public String toUnicode(String bits) {
     // Error handling: check for invalid input format
     if (bits == null || bits.length() != 6) {
-        System.err.println("Error: Invalid braille bit sequence. It should have 6 bits.");
-        return "";
+      System.err.println("Error: Invalid braille bit sequence. It should have 6 bits.");
+      return "";
     } // if condition
 
     String unicodeHex = b2u.get(bits); // Get Unicode hex code from the mapping
     if (unicodeHex == null || unicodeHex.isEmpty()) {
-        System.err.println("Error: No Unicode mapping found for braille bit sequence '" + bits + "'");
-        return "";
+      System.err.println("Error: No Unicode mapping found for braille bit sequence '" + bits + "'");
+      return "";
     } // if condition
-    
+
     // Convert the hex code (e.g., "2801") to a code point
     int unicodeCodePoint = Integer.parseInt(unicodeHex, 16); // Convert from hex to int
-    
+
     // Convert the code point to the actual Braille character
     return new String(Character.toChars(unicodeCodePoint)); // Return the Braille symbol
-} // toUnicode()
+  } // toUnicode()
 } // class BrailleAsciiTables

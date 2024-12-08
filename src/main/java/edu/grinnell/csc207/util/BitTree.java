@@ -94,7 +94,8 @@ public class BitTree {
     char[] bitsArray = bits.toCharArray();
     for (int i = 0; i < depth; i++) {
       if (bitsArray[i] != '0' && bitsArray[i] != '1') {
-        System.err.println("Trouble translating because no corresponding value exists for the bits.");
+        System.err.println("Trouble translating"
+            + " because no corresponding value exists for the bits.");
         return "No corresponding value"; // Default message
       } // if condition.
     } // for block.
@@ -104,13 +105,15 @@ public class BitTree {
     for (int i = 0; i < depth; i++) {
       if (bitsArray[i] == '0') {
         if (current.left == null) {
-          System.err.println("Trouble translating because no corresponding value exists for the bits.");
+          System.err.println("Trouble translating because"
+              + " no corresponding value exists for the bits.");
           return "No corresponding value"; // Default message
         } // if condition.
         current = current.left;
       } else if (bitsArray[i] == '1') {
         if (current.right == null) {
-          System.err.println("Trouble translating because no corresponding value exists for the bits.");
+          System.err.println("Trouble translating because"
+              + " no corresponding value exists for the bits.");
           return "No corresponding value"; // Default message
         } // if condition
         current = current.right;
@@ -120,7 +123,7 @@ public class BitTree {
     if (current.value == null) {
       System.err.println("Trouble translating because no corresponding value exists for the bits.");
       return "No corresponding value"; // Default message
-    }
+    } // if condition.
 
     return current.value;
   } // get().
