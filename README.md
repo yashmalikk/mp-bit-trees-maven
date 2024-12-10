@@ -15,7 +15,11 @@ A mini-project exploring bit trees (a form of binary tree) and their use in tran
 
 **Instructions for use**
 
-_Please insert instructions here._
+INSTRUCTIONS
+
+run this in terminal: java -cp target/classes edu.grinnell.csc207.main.BrailleASCII <target> <message>
+If target is braille / unicode: write the message in normal letters
+If target is ascii: write the message in braille (6 number string made of 1's and 0's)
 
 ---
 
